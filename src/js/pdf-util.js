@@ -1,5 +1,6 @@
-import { generateQR } from './util'
+import {generateQR, getFormattedDate, pad2Zero} from './util'
 import { PDFDocument, StandardFonts } from 'pdf-lib'
+import {loadDate} from "./form-util";
 
 const ys = {
   travail: 578,
@@ -38,7 +39,7 @@ export async function generatePdf (profile, reasons, pdfBase) {
     `Prenom: ${firstname}`,
     `Naissance: ${birthday} a ${placeofbirth}`,
     `Adresse: ${address} ${zipcode} ${city}`,
-    `Sortie: ${datesortie} a ${heuresortie}`,
+    `Sortie: ${creationDate} a ${creationHour}`,
     `Motifs: ${reasons}`,
   ].join(';\n ')
 
@@ -91,8 +92,8 @@ export async function generatePdf (profile, reasons, pdfBase) {
   }
 
   drawText(profile.city, 105, 177, locationSize)
-  drawText(`${profile.datesortie}`, 91, 153, 11)
-  drawText(`${profile.heuresortie}`, 264, 153, 11)
+  drawText(`${creationDate}`, 91, 153, 11)
+  drawText(`${creationHour}`, 264, 153, 11)
 
   // const shortCreationDate = `${creationDate.split('/')[0]}/${
   //   creationDate.split('/')[1]
