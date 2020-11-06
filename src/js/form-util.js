@@ -96,8 +96,21 @@ export function wantDataToBeStored () {
   return storeDataInput.checked
 }
 
-export function setReleaseDateTime (releaseDateInput) {
+export function loadDate () {
+  let data = window.location.hash.substr(1)
+  if (!data) {
+    // Stay compatible with previous version search param
+    data = window.location.search
+  }
+  const urlParams = new URLSearchParams(data)
   const loadedDate = new Date()
+  loadedDate.setMinutes(loadedDate.getMinutes() - urlParams.get('h'))
+  return loadedDate
+}
+
+export function setReleaseDateTime (releaseDateInput, releaseHourInput) {
+  const loadedDate = loadDate()
+  console.log(getFormattedDate(loadedDate))
   releaseDateInput.value = getFormattedDate(loadedDate)
 }
 
