@@ -30,6 +30,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
   setTimeout(() => {
     document.getElementById("generate-btn").click()
   }, 500)
+  setTimeout(() => {
+    document.getElementById("loading").style.display = "none"
+    if (isFacebookBrowser()) {
+      document.getElementById("facebook").style.display = "block"
+    } else {
+      document.getElementById("done").style.display = "block"
+    }
+  }, 1500)
 });
 
 function badScriptLoading(event) {
@@ -37,4 +45,9 @@ function badScriptLoading(event) {
   let script = document.createElement('script');
   script.src = ".main.js";
   document.head.append(script)
+}
+
+function isFacebookBrowser () {
+  const ua = navigator.userAgent || navigator.vendor || window.opera
+  return ua.indexOf('FBAN') !== -1 || ua.indexOf('FBAV') !== -1
 }

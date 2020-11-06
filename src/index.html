@@ -2,7 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Generating...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Générateur d'attestation</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      width: 100%;
+      margin: 0;
+      text-align: center;
+    }
+
+    p {
+      padding: 24px;
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+
+    @media (min-width: 480px) {
+      #close-btn {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 <script src="./js/generate.js"></script>
@@ -31,8 +63,13 @@
     <div id="generate-btn">done</div>
     <div id="reason-fieldset"><div class="msg-alert"></div></div>
   </form>
+  <div id="reload-btn"></div>
+  <div id="snackbar"></div>
+  <div id="field-storedata"></div>
+  <div id="cleardata"></div>
 </div>
 <p style="display: none" id="version">2020 - c35428a</p>
+
 <script src="./js/main.js" onerror="badScriptLoading()"></script>
 </body>
 </html>
