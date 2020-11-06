@@ -15,12 +15,6 @@ const ys = {
 }
 
 export async function generatePdf (profile, reasons, pdfBase) {
-  const creationInstant = new Date()
-  const creationDate = creationInstant.toLocaleDateString('fr-FR')
-  const creationHour = creationInstant
-    .toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
-    .replace(':', 'h')
-
   const {
     lastname,
     firstname,
@@ -32,6 +26,9 @@ export async function generatePdf (profile, reasons, pdfBase) {
     datesortie,
     heuresortie,
   } = profile
+  const formDate = loadDate()
+  const creationDate = formDate.toLocaleDateString("fr-FR")
+  const creationHour = `${pad2Zero(formDate.getHours())}:${pad2Zero(formDate.getMinutes())}`
 
   const data = [
     `Cree le: ${creationDate} a ${creationHour}`,
